@@ -2,12 +2,11 @@ import React from 'react';
 
 import { getComments } from '@/helpers/interview-helpers';
 import Comment from '@/components/Comment';
+import Spinner from '@/components/Spinner';
 
 export const dynamic = 'force-dynamic';
 
 async function InterviewExercise() {
-  const comments = await getComments();
-
   return (
     <>
       <article className="main-article">
@@ -123,17 +122,28 @@ async function InterviewExercise() {
           />
         </div>
       </article>
-
-      <section className="comments-section">
-        <h2>Discussion</h2>
-        {comments.map((comment) => (
-          <Comment
-            key={comment.id}
-            comment={comment}
-          />
-        ))}
-      </section>
+      <React.Suspense
+        fallback={<Spinner color="white" />}
+      >
+        <Comments />
+      </React.Suspense>
     </>
+  );
+}
+
+async function Comments() {
+  const comments = await getComments();
+
+  return (
+    <section className="comments-section">
+      <h2>Discussion</h2>
+      {comments.map((comment) => (
+        <Comment
+          key={comment.id}
+          comment={comment}
+        />
+      ))}
+    </section>
   );
 }
 
