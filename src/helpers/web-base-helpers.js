@@ -1,17 +1,19 @@
 import React from 'react';
 
-export async function getNavLinks() {
-  console.info(
-    'Requesting navigation links from CMS'
-  );
-  await delay(1800);
+export const getNavLinks = React.cache(
+  async function () {
+    console.info(
+      'Requesting navigation links from CMS',
+    );
+    await delay(1800);
 
-  return LINKS;
-}
+    return LINKS;
+  },
+);
 
 const delay = (ms) =>
   new Promise((resolve) =>
-    setTimeout(resolve, ms)
+    setTimeout(resolve, ms),
   );
 
 const LINKS = [
