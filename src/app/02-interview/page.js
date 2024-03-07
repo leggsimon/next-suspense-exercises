@@ -122,11 +122,14 @@ async function InterviewExercise() {
           />
         </div>
       </article>
-      <React.Suspense
-        fallback={<Spinner color="white" />}
-      >
-        <Comments />
-      </React.Suspense>
+      <section className="comments-section">
+        <h2>Discussion</h2>
+        <React.Suspense
+          fallback={<Spinner color="white" />}
+        >
+          <Comments />
+        </React.Suspense>
+      </section>
     </>
   );
 }
@@ -135,15 +138,14 @@ async function Comments() {
   const comments = await getComments();
 
   return (
-    <section className="comments-section">
-      <h2>Discussion</h2>
+    <>
       {comments.map((comment) => (
         <Comment
           key={comment.id}
           comment={comment}
         />
       ))}
-    </section>
+    </>
   );
 }
 
