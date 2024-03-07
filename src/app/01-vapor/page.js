@@ -3,6 +3,7 @@ import React from 'react';
 import { getGamesInLibrary } from '@/helpers/vapor-helpers';
 import LibraryGameCard from '@/components/LibraryGameCard';
 import LibraryHeader from '@/components/LibraryHeader';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,7 +11,7 @@ async function VaporExercise() {
   const games = await getGamesInLibrary();
 
   return (
-    <section className='max-width-wrapper'>
+    <MaxWidthWrapper>
       <LibraryHeader>
         <h1>My games</h1>
         <p>
@@ -22,7 +23,7 @@ async function VaporExercise() {
           <LibraryGameCard key={game.slug} game={game} />
         ))}
       </div>
-    </section>
+    </MaxWidthWrapper>
   );
 }
 

@@ -3,12 +3,13 @@ import React from 'react';
 import LibraryGameCardSkeleton from '@/components/LibraryGameCardSkeleton';
 import { range } from '@/utils';
 import LibraryHeader from '@/components/LibraryHeader';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 export const dynamic = 'force-dynamic';
 
 async function VaporExerciseLoading() {
   return (
-    <section className='max-width-wrapper'>
+    <MaxWidthWrapper>
       <LibraryHeader>
         <h1>My games</h1>
       </LibraryHeader>
@@ -17,7 +18,7 @@ async function VaporExerciseLoading() {
           <LibraryGameCardSkeleton key={index} />
         ))}
       </div>
-    </section>
+    </MaxWidthWrapper>
   );
 }
 
